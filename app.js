@@ -1,11 +1,26 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = 3000
+const PORT = process.env.PORT || 8081;
+const cors = require('cors');
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
-  
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+//Cors-origin
+var corsOptions = {
+  origin: "http://localhost:8081",
+};
+app.use(cors(corsOptions));
+
+// Parse JSON bodies
+// app.use(express.json());
+
+// Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.json({message: "Express backend"});
+});
+
+
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
+});
