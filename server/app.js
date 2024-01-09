@@ -3,6 +3,8 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 const cors = require('cors');
 const controllers = require('./controllers')
+
+const configDB = require('./config/db.config')
 //Cors-origin
 var corsOptions = {
   origin: "http://localhost:8081",
@@ -12,9 +14,9 @@ app.use(cors(corsOptions));
 // Create connection to database
 const { Sequelize } = require("sequelize")
 
-const sequelize = new Sequelize('testdb', 'postgres', 'root', {
-  host: 'localhost',
-  dialect: 'postgres'
+const sequelize = new Sequelize(configDB.DB, configDB.USER, configDB.PASSWORD, {
+  host: configDB.HOST,
+  dialect: configDB.dialect
 })
 
 try {
