@@ -1,0 +1,28 @@
+volumes:
+  GardenGro-data:
+    external: true
+
+
+version: '3.8'
+services:
+  app:
+    build: ./server
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    volumes:
+    - ./server:/usr/src/app/
+    - /usr/src/app/node_modules
+
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+    ports:
+      - "5432:5432"
+    volumes:
+      - GardenGro-data:/var/lib/postgresql/data
