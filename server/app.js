@@ -2,21 +2,25 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8081;
 const cors = require('cors');
-const controllers = require('./controllers')
+const { journalEntry } = require('./models/journal.model')
 
-const configDB = require('./config/db.config')
+
 //Cors-origin
 var corsOptions = {
   origin: "http://localhost:8081",
 };
 app.use(cors(corsOptions));
 
+
+//setup config connection file
+const configDB = require('./config/db.config')
+
 // Create connection to database
 const { Sequelize } = require("sequelize")
 
 const sequelize = new Sequelize(configDB.DB, configDB.USER, configDB.PASSWORD, {
-  host: configDB.HOST,
-  dialect: configDB.dialect
+  host: 'localhost',
+  dialect: 'postgres'
 })
 
 try {
@@ -25,6 +29,13 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
+
+
+//Tables
+journalEntry
+.sync()
+.then(()=>{console.log("Journal Entry Table created successfully")})
+.catch((e) => {console.log(`Unable to create table due to ${e}`)})
 
 // Parse JSON bodies
 app.use(express.json());
