@@ -2,8 +2,14 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8081;
 const cors = require('cors');
+
+//Establish connection to models
 const { journalEntry } = require('./models/journal.model')
 
+
+//Establish connection to routes
+const journalRouter = require("./routes/journalRoutes")
+app.use("/", journalRouter)
 
 //Cors-origin
 var corsOptions = {

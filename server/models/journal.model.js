@@ -23,21 +23,26 @@ const journalEntry = sequelize.define("JournalEntry", {
   });
 
 
-async function createEntry() {
-  try {
-    const testEntry = await journalEntry.create({
-      title: "TEST",
-      content: "TEST"
-    });
-    console.log(`${testEntry} created`)
-    return testEntry
-  } catch (err) {
-    console.log(err);
-  }
+journalEntry
+  .sync()
+  .then(()=>{console.log("Journal Entry Table created successfully")})
+  .catch((e) => {console.log(`Unable to create table due to ${e}`)})
 
-}
+// async function createEntry() {
+//   try {
+//     const testEntry = await journalEntry.create({
+//       title: "TEST",
+//       content: "TEST"
+//     });
+//     console.log(`${testEntry} created`)
+//     return testEntry
+//   } catch (err) {
+//     console.log(err);
+//   }
 
-createEntry()
+// }
+
+// createEntry()
 
 
 module.exports = { journalEntry }
