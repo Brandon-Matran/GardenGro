@@ -6,13 +6,15 @@ const cors = require('cors');
 //Establish connection to models
 const { journalEntry } = require('./models/journal.model')
 
-
+app.use(cors())
 //Establish connection to routes
 const journalRouter = require("./routes/journalRoutes")
 app.use("/", journalRouter)
 
 //Cors-origin
-app.use(cors())
+
+
+
 
 //setup config connection file
 const configDB = require('./config/db.config')
