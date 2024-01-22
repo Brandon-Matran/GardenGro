@@ -22,6 +22,10 @@ export const JournalEntry = () => {
     }
   }
 
+  async function clearJournal(event) {
+    setTitle("")
+    setContent("")
+  }
   return (
     <>
       <div className="w-full max-w-xs">
@@ -66,7 +70,7 @@ export const JournalEntry = () => {
             >
               Create Entry
             </button>
-            <button>Clear</button>
+            <button onClick={clearJournal}>Clear</button>
           </div>
         </form>
       </div>
