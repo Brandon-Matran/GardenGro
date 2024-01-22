@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8081;
 const cors = require('cors');
-
+require('dotenv').config();
 //Establish connection to models
 const { journalEntry } = require('./models/journal.model')
 
@@ -10,6 +10,9 @@ const { journalEntry } = require('./models/journal.model')
 //Establish connection to routes
 const journalRouter = require("./routes/journalRoutes")
 app.use("/", journalRouter)
+
+const weatherApi = require("./routes/weatherApi")
+app.use("/", weatherApi)
 
 //Cors-origin
 var corsOptions = {
