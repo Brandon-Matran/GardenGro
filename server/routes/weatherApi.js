@@ -11,15 +11,11 @@ router.get("/weather", async (req, res) => {
     const state = req.query.state;
     const country = req.query.country;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${weatherKey}&units=imperial`;
-    // const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Oakland,US-CA,US&appid=b25e676301ee93f91260563b5166dcf7&units=imperial'
 
     const response = await axios.get(apiUrl);
 
     data = response.data;
 
-    // return {
-    //     "weather": data.description
-    // }
     res
       .status(200)
       .json({
