@@ -9,16 +9,16 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-        <WeatherAPI />
-        <Routes>
 
+        <Routes>
           <Route path="journals">
-            <Route path="" element={<Journal />} />
+            <Route index element={<Journal />} />
             <Route path="post" element={<JournalEntry />} />
           </Route>
           <Route />
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }
