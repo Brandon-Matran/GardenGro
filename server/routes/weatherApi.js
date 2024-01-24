@@ -13,6 +13,7 @@ router.get("/weather", async (req, res) => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${weatherKey}&units=imperial`;
 
     const response = await axios.get(apiUrl);
+    console.log(response.data)
     res
       .status(200)
       .json({
