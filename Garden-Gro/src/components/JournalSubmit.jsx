@@ -1,30 +1,43 @@
 import { useState } from "react";
-import initialJournal from "../initial-journal";
-import JournalEntry from "./JournalEntry"; // Ensure this matches the file name
-
+import supabase
+ from "../lib/supabaseClient";
 export const JournalSubmit = (props) => {
   const {onClose} = props;
-  const [journal, setJournal] = useState(initialJournal);
+
   const [image, setImage] = useState("");
   const [entry, setEntry] = useState("");
   const [plant, setPlant] = useState("");
+  const [maturity, setMaturity] = useState(0);
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
-  // const journalItems = journal.map((j, idx) => (
-  //   <JournalEntry key={idx} journal={j} />
-  // ));
+  async function submitJournal() {
+    const { data, error } = await supabase
+      .from('journalentries')
+      .insert([
+        {
+          date: date,         // Ensure these column names match your table schema
+          imageUrl: image,
+          entry: entry,
+          plantName: plant,
+          daysToMaturity: maturity
+        },
+      ]);
+
+    if (error) {
+      console.error('Error inserting journal entry:', error);
+    } else {
+      console.log('Journal entry inserted:', data);
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newEntry = {
-      date: date, // Use the date state here
-      imageUrl: image,
-      entry: entry,
-    };
-    setJournal([...journal, newEntry]);
+    submitJournal()
+
     setPlant("");
     setImage("");
     setEntry("");
+    setMaturity()
     setDate(new Date().toLocaleDateString()); // Update date to current date for next entry
   };
 
