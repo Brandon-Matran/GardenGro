@@ -1,44 +1,31 @@
 import { useState } from "react";
 import JournalEntry from "./components/Journalentry";
 import { WeatherAPI } from "./components/WeatherApi";
-import { JournalSubmit } from "./components/JournalSubmit";
+import NavBar from "./components/NavBar";
+
 function App() {
   const [entry, setEntry] = useState(false);
   const [calenderEvent, setCalenderEvent] = useState(false);
-  return (
-    <>
-      <div className="flex flex-col justify-center items-center ">
-        <div className="flex ">
-          <div className="px-5">
-            <button
-              onClick={(e) => {
-                setEntry(true);
-              }}
-            >
-              Create Entry
-            </button>
-          </div>
-          <div className="px-5">
-            <button>Create Reminder</button>
-          </div>
-        </div>
+  const [login, setLogin] = useState(false);
 
-        {entry && (
-          <JournalSubmit
-            onClose={() => {
-              setEntry(false);
-            }}
-          />
-        )}
+  return (
+    <div className="relative min-h-screen bg-indigo-50">
+      <NavBar/>
+
+      <div
+        className="w-full bg-indigo-50 absolute"
+        style={{ zIndex: 0 }}
+      ></div>
+
+      <div className="relative flex flex-col justify-center items-center">
         <div className="flex justify-start">
-          <div className="flex flex-wrap justify-start w-full max-w-2xl">
+          <div className="flex px-4 justify-start w-full max-w-2xl">
             <JournalEntry />
           </div>
-
           <WeatherAPI />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
