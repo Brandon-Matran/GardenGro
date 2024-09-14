@@ -67,7 +67,7 @@ export const WeatherAPI = () => {
     <>
 
 
-<div id="sticky-banner" tabIndex="-1" className="fixed start-0  flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+<div id="sticky-banner" tabIndex="-1" className="absolute start-0  flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600" style={{ fontFamily: "'Fugaz One', sans-serif", fontWeight: 400, fontStyle: 'normal'}}>
     <div className="flex items-center mx-auto">
         <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
             <span className="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center flex-shrink-0">

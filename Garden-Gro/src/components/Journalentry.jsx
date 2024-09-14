@@ -19,7 +19,14 @@ const JournalEntry = () => {
 
   const journalItems = journal.map((j, idx) => (
     <div key={idx} className="mx-2">
-      <div className="shadow-lg flex items-center flex-col justify-center m-4  object-cover h-64 rounded-lg overflow-clip p-0   max-w-2xl ">
+      <div
+        className="shadow-lg flex items-center flex-col justify-center m-4  object-cover h-64 rounded-lg overflow-clip p-0 max-w-2xl"
+        style={{
+          fontFamily: "'Fugaz One', sans-serif",
+          fontWeight: 400,
+          fontStyle: "normal",
+        }}
+      >
         <div className=" w-48 ">
           {j.imageUrl && (
             <img
@@ -29,7 +36,7 @@ const JournalEntry = () => {
             />
           )}
         </div>
-        <div className="borderflex flex-col p-4 text-xs h-32 w-48 overflow-hidden text-ellipsis overflow-y-scroll bg-white">
+        <div className="border flex flex-col p-4 text-xs h-32 w-48 overflow-hidden text-ellipsis overflow-y-scroll bg-white justify-start items-center">
           {j.entry}
         </div>
       </div>
@@ -38,7 +45,8 @@ const JournalEntry = () => {
 
   return (
     <>
-      <div className="mt-24 md:flex-row flex flex-col items-center rounded-lg z-0">
+      <div className="mt-24 md:flex-row flex flex-col items-center rounded-lg border-red-200 border">
+        <div className="flex h-full justify-start items-start ">Test</div>
         {journalItems}
       </div>
     </>
