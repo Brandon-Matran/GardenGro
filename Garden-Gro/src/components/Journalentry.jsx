@@ -38,9 +38,9 @@ const JournalEntry = () => {
     <div className="mt-24 flex flex-col items-center w-full px-4">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full md:max-w-4xl border border-black p-4">
         {j.imageUrl && (
-          <div className="flex-shrink-0 w-full md:w-1/3 mb-4 md:mb-0">
+          <div className="flex-shrink-0 w-full md:w-1/3 mb-4 md:mb-0 px-4">
             <img
-              className="object-cover rounded-lg w-full h-auto"
+              className="object-cover rounded-lg w-full h-64"
               src={j.imageUrl}
               alt={`Journal entry ${currentIndex}`}
             />
@@ -61,7 +61,7 @@ const JournalEntry = () => {
               Next
             </button>
           </div>
-          <div className="border border-gray-300 p-4 rounded-lg bg-white overflow-auto h-48 md:h-64 text-sm">
+          <div className="p-4 rounded-lg overflow-auto h-48 md:h-64 text-sm">
             {j.entry}
           </div>
         </div>
