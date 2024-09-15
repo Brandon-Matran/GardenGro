@@ -1,12 +1,12 @@
-import { useState } from "react";
+
 import JournalEntry from "./components/Journalentry";
 import { WeatherAPI } from "./components/WeatherApi";
 import NavBar from "./components/NavBar";
+import Calendar from "react-calendar";
+
 
 function App() {
-  const [entry, setEntry] = useState(false);
-  const [calenderEvent, setCalenderEvent] = useState(false);
-  const [login, setLogin] = useState(false);
+
 
   return (
     <div
@@ -24,6 +24,7 @@ function App() {
         </div>
 <div></div>
         <JournalEntry />
+<Calendar />
       </div>
     </div>
   );
