@@ -9,23 +9,21 @@ function App() {
   const [login, setLogin] = useState(false);
 
   return (
-    <div className="relative min-h-screen" style={{ backgroundColor: "rgb(237, 240, 242)"}}>
-      <NavBar/>
+    <div
+      className="relative min-h-screen w-full"
+      style={{ backgroundColor: "rgb(237, 240, 242)" }}
+    >
+      <div className="w-full "><NavBar /></div>
 
-      <div
-        className="w-full bg-indigo-50 absolute"
-        style={{ zIndex: 0}}
-      ></div>
 
-      <div className="relative flex flex-col justify-center items-center">
-        <div className="">
-        <WeatherAPI />
-          <div className="flex justify-start w-full max-w-2xl">
-           
-            <JournalEntry />
-          </div>
+      <div className="w-full bg-indigo-50" style={{ zIndex: 0 }}></div>
 
+      <div className="flex flex-col justify-center items-center">
+        <div>
+          <WeatherAPI />
         </div>
+<div></div>
+        <JournalEntry />
       </div>
     </div>
   );

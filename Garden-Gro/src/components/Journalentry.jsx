@@ -3,6 +3,7 @@ import supabase from "../lib/supabaseClient";
 
 const JournalEntry = () => {
   const [journal, setJournal] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   async function getJournals() {
     const { data, error } = await supabase.from("journalentries").select();
@@ -17,39 +18,55 @@ const JournalEntry = () => {
     getJournals();
   }, []);
 
-  const journalItems = journal.map((j, idx) => (
-    <div key={idx} className="mx-2">
-      <div
-        className="shadow-lg flex items-center flex-col justify-center m-4  object-cover h-64 rounded-lg overflow-clip p-0 max-w-2xl"
-        style={{
-          fontFamily: "'Fugaz One', sans-serif",
-          fontWeight: 400,
-          fontStyle: "normal",
-        }}
-      >
-        <div className=" w-48 ">
-          {j.imageUrl && (
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % journal.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + journal.length) % journal.length
+    );
+  };
+
+  if (journal.length === 0) {
+    return <p>No journal entries available</p>;
+  }
+
+  const j = journal[currentIndex];
+
+  return (
+    <div className="mt-24 flex flex-col items-center w-full px-4">
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full md:max-w-4xl border border-black p-4">
+        {j.imageUrl && (
+          <div className="flex-shrink-0 w-full md:w-1/3 mb-4 md:mb-0">
             <img
-              className="object-cover h-32 w-48 rounded-t-lg"
+              className="object-cover rounded-lg w-full h-auto"
               src={j.imageUrl}
-              alt={`Journal entry ${idx}`}
+              alt={`Journal entry ${currentIndex}`}
             />
-          )}
-        </div>
-        <div className="border flex flex-col p-4 text-xs h-32 w-48 overflow-hidden text-ellipsis overflow-y-scroll bg-white justify-start items-center">
-          {j.entry}
+          </div>
+        )}
+        <div className="flex flex-col justify-center w-full md:w-2/3">
+          <div className="flex justify-between items-center mb-4">
+            <button
+              className="w-12 px-4 py-2 bg-gray-300 rounded-md"
+              onClick={handlePrev}
+            >
+              Prev
+            </button>
+            <button
+              className="w-12 px-4 py-2 bg-gray-300 rounded-md"
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+          <div className="border border-gray-300 p-4 rounded-lg bg-white overflow-auto h-48 md:h-64 text-sm">
+            {j.entry}
+          </div>
         </div>
       </div>
     </div>
-  ));
-
-  return (
-    <>
-      <div className="mt-24 md:flex-row flex flex-col items-center rounded-lg border-red-200 border">
-        <div className="flex h-full justify-start items-start ">Test</div>
-        {journalItems}
-      </div>
-    </>
   );
 };
 
