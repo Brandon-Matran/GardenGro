@@ -14,7 +14,7 @@ function App() {
       style={{ backgroundColor: "rgb(237, 240, 242)" }}
     >
       <div className="w-full "><NavBar /></div>
-
+      <i class="fa-solid fa-chevron-left"></i>
 
       <div className="w-full bg-indigo-50" style={{ zIndex: 0 }}></div>
 

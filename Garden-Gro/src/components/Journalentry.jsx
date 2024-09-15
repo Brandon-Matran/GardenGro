@@ -36,7 +36,7 @@ const JournalEntry = () => {
 
   return (
     <div className="mt-24 flex flex-col items-center w-full px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full md:max-w-4xl border border-black p-4">
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full md:max-w-4xl p-4">
         {j.imageUrl && (
           <div className="flex-shrink-0 w-full md:w-1/3 mb-4 md:mb-0 px-4">
             <img
@@ -47,23 +47,24 @@ const JournalEntry = () => {
           </div>
         )}
         <div className="flex flex-col justify-center w-full md:w-2/3">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-center items-center mb-4 ">
             <button
-              className="w-12 px-4 py-2 bg-gray-300 rounded-md"
+              className="w-12 px-4 py-2 rounded-md"
               onClick={handlePrev}
             >
-              Prev
+                <i className="fa-solid fa-chevron-left text-2xl"/>
             </button>
-            <button
-              className="w-12 px-4 py-2 bg-gray-300 rounded-md"
-              onClick={handleNext}
-            >
-              Next
-            </button>
-          </div>
-          <div className="p-4 rounded-lg overflow-auto h-48 md:h-64 text-sm">
+            <div className="flex justify-center items-center p-4 rounded-lg overflow-auto h-48 md:h-64 text-sm w-full">
             {j.entry}
           </div>
+            <button
+              className="w-12 px-4 py-2"
+              onClick={handleNext}
+            >
+             <i class="fa-solid fa-chevron-right text-2xl"></i>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
